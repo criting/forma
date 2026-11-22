@@ -2,6 +2,7 @@ import { DemoBanner } from "@/components/layout/demo-banner";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { site } from "@/content/provider";
 import { pageMetadata } from "@/lib/seo";
 import { Bricolage_Grotesque, IBM_Plex_Mono, Source_Sans_3 } from "next/font/google";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <a href="#main" className="skip-link">
             Skip to content
           </a>
+          <ScrollProgress />
           <DemoBanner />
           <SiteHeader />
           <main id="main">{children}</main>

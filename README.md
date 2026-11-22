@@ -1,6 +1,6 @@
 # FORMA
 
-Premium **independent creative studio** template — brand identity, art direction, packaging, editorial and digital. Built for Veltri / Criting marketplace quality: warm paper, deep ink, vermilion signal, typographic confidence.
+Premium **independent creative studio** template — brand identity, art direction, packaging, editorial and digital. Built to sell at commercial agency-template density: warm paper, deep ink, vermilion signal, mega typography, cinematic sticky work, rich Motion (curtain transitions, word-fill, magnetic CTAs).
 
 > **Demo content is fictional.** Projects, people and journal posts are sample data for preview only.
 

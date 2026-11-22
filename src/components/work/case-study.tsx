@@ -21,10 +21,11 @@ export function CaseStudy({ project }: { project: Project }) {
             {project.year} · {project.client} · Fictional demo
           </p>
           <Reveal>
-            <h1 className="text-display max-w-[12ch] text-5xl tracking-tight md:text-7xl lg:text-8xl">
+            <h1 className="text-mega max-w-[12ch] text-[clamp(3rem,10vw,7.5rem)] tracking-tight">
               {project.title}
             </h1>
           </Reveal>
+          <div className="signal-bar mt-6" />
           <p className="mt-6 max-w-2xl text-xl text-muted">{project.summary}</p>
           <ul className="mt-8 flex list-none flex-wrap gap-2 p-0">
             {labels.map((label) => (

@@ -20,7 +20,7 @@ export function SiteHeader() {
   }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -38,19 +38,23 @@ export function SiteHeader() {
     return pathname.startsWith(href.replace(/\/$/, "")) || pathname === href;
   };
 
+  const onInkHero = pathname === "/" && !scrolled && !open;
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-[background,border-color,backdrop-filter] duration-300",
+        "sticky top-0 z-50 transition-[background,border-color,backdrop-filter,color,box-shadow] duration-300",
         scrolled || open
-          ? "border-rule bg-paper/90 backdrop-blur-md"
-          : "border-transparent bg-paper/40 backdrop-blur-sm",
+          ? "border-b border-rule bg-paper/92 text-ink shadow-[0_12px_40px_-24px_rgb(15_13_12/0.35)] backdrop-blur-md"
+          : onInkHero
+            ? "border-b border-transparent bg-ink text-paper-raised"
+            : "border-b border-transparent bg-paper/80 text-ink backdrop-blur-sm",
       )}
     >
-      <div className="mx-auto flex h-[var(--header-h)] max-w-[1400px] items-center justify-between gap-6 px-5 md:px-8">
+      <div className="mx-auto flex h-[var(--header-h)] max-w-[1500px] items-center justify-between gap-6 px-5 md:px-8">
         <Link
           href="/"
-          className="text-display text-[1.35rem] tracking-[-0.04em] text-ink no-underline"
+          className="text-display text-[1.45rem] tracking-[-0.05em] no-underline"
         >
           {site.wordmark}
         </Link>
@@ -61,18 +65,31 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                "text-sm tracking-wide no-underline transition-colors",
-                isActive(item.href) ? "text-signal" : "text-ink-soft hover:text-signal",
+                "relative text-sm tracking-wide no-underline transition-colors",
+                isActive(item.href)
+                  ? "text-signal"
+                  : onInkHero
+                    ? "text-paper-raised/75 hover:text-paper-raised"
+                    : "text-ink-soft hover:text-signal",
               )}
             >
               {item.label}
+              {isActive(item.href) ? (
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute -bottom-1 left-0 right-0 h-px bg-signal"
+                />
+              ) : null}
             </Link>
           ))}
         </nav>
 
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-rule-strong px-3 py-2 text-sm lg:hidden"
+          className={cn(
+            "inline-flex items-center gap-2 rounded-[var(--radius-control)] border px-3 py-2 text-sm lg:hidden",
+            onInkHero ? "border-paper-raised/30" : "border-rule-strong",
+          )}
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -87,27 +104,27 @@ export function SiteHeader() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="border-t border-rule bg-paper lg:hidden"
+            className="border-t border-rule bg-paper text-ink lg:hidden"
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={reduce ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <nav
               aria-label="Mobile"
-              className="mx-auto flex max-w-[1400px] flex-col gap-1 px-5 py-6"
+              className="mx-auto flex max-w-[1500px] flex-col gap-1 px-5 py-8"
             >
               {navigation.map((item, i) => (
                 <motion.div
                   key={item.href}
-                  initial={reduce ? false : { opacity: 0, x: -12 }}
+                  initial={reduce ? false : { opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.04 * i, duration: 0.35 }}
+                  transition={{ delay: 0.05 * i, duration: 0.4 }}
                 >
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-display block py-3 text-3xl tracking-tight no-underline",
+                      "text-display block py-3 text-4xl tracking-tight no-underline",
                       isActive(item.href) ? "text-signal" : "text-ink",
                     )}
                   >

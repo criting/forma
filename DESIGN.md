@@ -1,64 +1,66 @@
-# FORMA — Design System
+# FORMA — Design System (commercial premium)
 
-Independent creative studio / branding template. Print-studio paper, deep ink, vermilion signal. Typographic confidence over decoration.
+Independent creative studio template. Warm paper, deep ink, vermilion signal. Built to sell at commercial agency-template density — cinematic scroll, bold type, rich motion — without cloning Adon / Archidex / Antra / Orisa / Morph layouts or brands.
 
 ## Positioning
 
-For branding studios, art directors and multidisciplinary teams. Feels like a contemporary design practice — not ATELIER chalk architecture, not a generic agency landing page, not STILLFORM contact-sheet photography, not NOIR fashion commerce.
+For branding studios and multidisciplinary teams. Proof-first homepage: show → claim → explain → enquire. Distinct from Atelier chalk, STILLFORM contact-sheet, NOIR fashion commerce.
 
 ## Palette
 
 | Token | Hex | Role |
 |-------|-----|------|
-| Paper | `#F2EBE1` | Warm page ground |
-| Paper raised | `#FAF6F0` | Elevated bands, forms |
-| Paper sunken | `#E8E0D4` | Footer / banner wash |
-| Ink | `#14110F` | Primary text / wordmark |
-| Ink soft | `#2A2520` | Secondary body |
-| Muted | `#6B645C` | Supporting copy |
-| Meta | `#8A8278` | Captions, mono labels |
-| Rule | `#D6CFC4` | Fine rules |
-| Signal | `#E23D28` | Single assertive accent |
-| Signal soft | `#F8E4DF` | Soft signal wash |
+| Paper | `#EFE6D9` | Warm page ground |
+| Paper raised | `#F7F1E7` | Elevated bands |
+| Paper sunken | `#E4D9C8` | Marquee / footer wash |
+| Ink | `#0F0D0C` | Hero plates / primary text |
+| Muted | `#5F5850` | Supporting copy |
+| Signal | `#E12F1C` | Single assertive accent |
+| Signal soft | `#F6DDD7` | Soft washes |
 
-Buyer alternates (document only — switch CSS variables): electric blue `#1C4BFF`, acidic chartreuse `#B6D200`. Keep one signal at a time.
+Buyer alternates: electric blue `#1C4BFF`, chartreuse `#B6D200` — one signal at a time.
 
 ## Typography
 
 | Role | Family | Notes |
 |------|--------|-------|
-| Display / wordmark | **Bricolage Grotesque** | Oversized headlines, section titles |
-| Body / UI | **Source Sans 3** | Readable long-form and controls |
-| Metadata | **IBM Plex Mono** | Labels, filters, credits, dates only |
+| Mega / wordmark | **Bricolage Grotesque** 700 | Hero `clamp(4.8rem, 18vw, 13.5rem)` |
+| Display | **Bricolage Grotesque** 650 | Section titles, case titles |
+| Body / UI | **Source Sans 3** | Long-form + controls |
+| Meta | **IBM Plex Mono** | Labels, filters, credits only |
 
-Avoid Inter / Roboto / Arial / system UI stacks as primary. Never use mono for body paragraphs.
+## Motion system
 
-## Layout
+Shared springs in `src/lib/motion.ts` (`springSnappy` / `springSoft` / `springCinematic` / `easeOutExpo`).
 
-- Editorial crops, fine rules, registration-mark accents, asymmetric work sequences
-- Hero budget: brand + one statement + one art-directed graphic plane + CTA group
-- Case studies use layout variants (`editorial` · `spread` · `stack` · `grid`) — not one repeated card stack
+| Pattern | Where |
+|---------|--------|
+| Curtain page enter | `src/app/template.tsx` + `PageTransition` |
+| Scroll progress bar | Fixed vermilion scaleX |
+| Hero plate parallax + mega type blur-in | Home hero |
+| Sticky cinematic work plates | Homepage selected work |
+| Word-fill manifesto | Studio POV |
+| Discipline marquee | Below hero |
+| Magnetic CTAs | Enquiry / primary actions |
+| Hover media scale | Work tiles + sticky plates |
+| `MotionConfig reducedMotion="user"` | Global |
+
+No scroll-jacking. No forced horizontal scroll. Essential actions remain keyboard-accessible without hover.
+
+## Composition
+
+- Hero = one full-viewport ink plate, mega wordmark, one claim, CTA group
+- Work = sticky chapter plates (not equal 3-card grids)
+- Case studies keep layout variants (`editorial` / `spread` / `stack` / `grid`)
 - Radius: media `0` · controls `2px` · never pill CTAs
-- No device mockups, bento grids, gradient blobs, glassmorphism, or fake metrics
-
-## Motion
-
-- Hero: masked line rise, parallax graphic shift, restrained registration drift
-- Archive: staggered tile reveals, hover scale on media (disabled under reduced motion)
-- Shared springs / ease in `src/lib/motion.ts`
-- `MotionConfig reducedMotion="user"` globally
-- No scroll-jacking, forced horizontal scroll, or hover-only essential behaviour
-
-## Atmosphere
-
-Warm paper wash + subtle SVG grain (`.grain`). Signal colour used sparingly — links on hover, filter active states, enquiry CTAs, registration accents.
+- Materials: paper grain, ink glow on media, signal bars — not purple blobs or glassmorphism
 
 ## Content boundary
 
-`src/content/provider.ts` is the typed local ContentProvider. All sample projects, people and journal posts are **fictional demo** content. Replace assets with labelled placeholders until real photography exists — never fabricate client screenshots or metrics.
+`src/content/provider.ts` — typed local ContentProvider. Sample projects / people / journal are **fictional demo**. No CMS/Payload; Nextly later.
 
 ## Do not
 
-- Copy Atelier / Maison / NÉROLI / MONOGRAPH / NOIR / STILLFORM compositions
-- Invent testimonials, awards, client logos or conversion stats
-- Ship Payload/CMS in this template (Nextly noted in README for later)
+- Clone ThemeForest / Awwwards reference layouts or assets
+- Invent testimonials, awards, metrics
+- Quiet “polished but empty” spacing without cinematic beats

@@ -1,30 +1,34 @@
 @import "tailwindcss";
 
 /*
- * FORMA — print-studio paper + registration
- * Warm paper, deep ink, vermilion signal. Typographic confidence.
- * Not Atelier chalk, not STILLFORM chartreuse, not NOIR oxblood.
+ * FORMA — commercial premium craft bar
+ * Warm paper + deep ink + vermilion signal.
+ * Cinematic density: bold type, sticky chapters, rich scroll motion.
+ * Inspired by sellable agency templates (Adon/Archidex/Orisa craft density) —
+ * never cloned layouts, brands, or assets.
  */
 
 :root {
-  --paper: #f2ebe1;
-  --paper-raised: #faf6f0;
-  --paper-sunken: #e8e0d4;
-  --ink: #14110f;
-  --ink-soft: #2a2520;
-  --muted: #6b645c;
-  --meta: #8a8278;
-  --rule: #d6cfc4;
-  --rule-strong: #bdb5a8;
-  --signal: #e23d28;
-  --signal-hover: #c43220;
-  --signal-soft: #f8e4df;
-  --focus: #e23d28;
-  --header-h: 4rem;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --paper: #efe6d9;
+  --paper-raised: #f7f1e7;
+  --paper-sunken: #e4d9c8;
+  --ink: #0f0d0c;
+  --ink-soft: #221e1a;
+  --muted: #5f5850;
+  --meta: #857c72;
+  --rule: #d2c8b8;
+  --rule-strong: #b7ad9c;
+  --signal: #e12f1c;
+  --signal-hover: #c12514;
+  --signal-soft: #f6ddd7;
+  --focus: #e12f1c;
+  --header-h: 4.25rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
   --radius-control: 2px;
-  --grain-opacity: 0.035;
+  --grain-opacity: 0.04;
+  --glow-ink: 0 30px 80px -24px rgb(15 13 12 / 0.45);
+  --glow-signal: 0 24px 60px -20px rgb(225 47 28 / 0.45);
 }
 
 @theme inline {
@@ -116,15 +120,22 @@
 
 .text-display {
   font-family: var(--font-display), ui-sans-serif, sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 0.95;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+.text-mega {
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.82;
 }
 
 .text-mono {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--meta);
 }
@@ -142,27 +153,6 @@
   opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
-}
-
-.rule {
-  height: 1px;
-  background: var(--rule);
-  border: 0;
-}
-
-.registration {
-  position: relative;
-}
-
-.registration::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border: 1px solid var(--signal);
-  border-radius: 50%;
-  opacity: 0.55;
-  pointer-events: none;
 }
 
 .site-shell {
@@ -183,4 +173,37 @@
 
 .skip-link:focus {
   top: 1rem;
+}
+
+.ink-panel {
+  background: var(--ink);
+  color: var(--paper-raised);
+  box-shadow: var(--glow-ink);
+}
+
+.signal-bar {
+  height: 3px;
+  width: 4.5rem;
+  background: linear-gradient(90deg, var(--signal), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: forma-marquee 36s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+@keyframes forma-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
